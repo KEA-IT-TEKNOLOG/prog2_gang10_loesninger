@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<p>Home site</p>
+<p>Knappens tilstand er: <span id="knap_tilstand"></span></p>
+
+<script type="text/javascript" charset="utf-8">
+    var socket = io();
+    socket.on('button_state', function (e) {
+
+        document.getElementById('knap_tilstand').innerText = e == 1 ? 'Sluppet' : 'Trykket';
+
+        document.body.style.background = e == 1 ? 'pink' : 'salmon';
+    });
+</script>
+{% endblock %}
